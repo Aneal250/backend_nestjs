@@ -23,15 +23,19 @@ export class MediaService {
     });
   }
 
-  async fetchMediaPagination(page: number, pageSize: number) {
+  async fetchMediaPagination(page: number, perPage: number) {
     const [result, total] = await this.mediaRepository.findAndCount({
       order: {
         createdAt: 'DESC',
       },
-      skip: (page - 1) * pageSize,
-      take: pageSize,
+      skip: (page - 1) * perPage,
+      take: perPage,
     });
     return result;
+  }
+
+  async fetchMediaByTitle(title: string){
+
   }
 
   createMedia(mediaDetails: CreateMedia) {

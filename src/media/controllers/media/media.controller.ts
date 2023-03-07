@@ -10,6 +10,7 @@ import {
   Post,
   Patch,
   Delete,
+  Query,
 } from '@nestjs/common';
 
 @Controller('media')
@@ -18,6 +19,14 @@ export class MediaController {
   @Get()
   getMedia() {
     return this.MediaService.fetchMedia();
+  }
+
+  @Get()
+  async fetchMediaPageByPagination(
+    @Query('page') page: number,
+    @Query('perPage') perPage: number,
+  ) {
+    return this.MediaService.fetchMediaPagination(page, perPage);
   }
 
   @Get(':id')
