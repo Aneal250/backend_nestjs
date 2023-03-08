@@ -30,7 +30,7 @@ export class MediaController {
   }
 
   @Get(':id')
-  async getMediaById(@Param('id', ParseIntPipe) id: number) {
+  async getMediaById(@Param('id') id: string) {
     return this.MediaService.fetchMediaById(id);
   }
 
@@ -41,14 +41,14 @@ export class MediaController {
 
   @Patch(':id')
   async UpdateMediaById(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id') id: string,
     @Body() updateMedia: CreateMediaDto,
   ) {
     await this.MediaService.updateMedia(id, updateMedia);
   }
 
   @Delete('id')
-  async deleteUserById(@Param('id', ParseIntPipe) id: number) {
+  async deleteUserById(@Param('id') id: string) {
     await this.MediaService.deleteMedia(id);
   }
 }

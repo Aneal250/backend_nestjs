@@ -15,7 +15,7 @@ export class MediaService {
     return this.mediaRepository.find();
   }
 
-  fetchMediaById(id: number) {
+  fetchMediaById(id: string) {
     return this.mediaRepository.findOne({
       where: {
         id: id,
@@ -48,11 +48,11 @@ export class MediaService {
     return this.mediaRepository.save(newMedia);
   }
 
-  updateMedia(id: number, updateMedia: UpdateMedia) {
+  updateMedia(id: string, updateMedia: UpdateMedia) {
     return this.mediaRepository.update({ id }, { ...updateMedia });
   }
 
-  deleteMedia(id: number) {
+  deleteMedia(id: string) {
     return this.mediaRepository.delete({ id });
   }
 }

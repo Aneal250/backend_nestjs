@@ -3,7 +3,8 @@ import { Factory } from 'nestjs-seeder';
 @Entity({ name: 'media' })
 export class Media {
   @PrimaryGeneratedColumn()
-  id: number;
+  @Factory((faker) => faker.datatype.uuid())
+  id: string;
 
   @Factory((faker) => faker.helpers.arrayElement(['movie', 'audio']))
   @Column()
