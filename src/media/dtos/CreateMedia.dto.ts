@@ -1,8 +1,9 @@
 export class CreateMediaDto {
   type: string;
+  name: string;
   description: string;
   url: string;
   status: string;
-  createdAt: any;
-  updatedAt: any;
+  createdAt: Date;
+  updatedAt: Date;
 }

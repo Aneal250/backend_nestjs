@@ -3,12 +3,15 @@ import { Factory } from 'nestjs-seeder';
 @Entity({ name: 'media' })
 export class Media {
   @PrimaryGeneratedColumn()
-  @Factory((faker) => faker.datatype.uuid())
   id: string;
 
   @Factory((faker) => faker.helpers.arrayElement(['movie', 'audio']))
   @Column()
   type: string;
+
+  @Factory((faker) => faker.music.songName())
+  @Column()
+  name: string;
 
   @Factory((faker) => faker.lorem.words(10))
   @Column()

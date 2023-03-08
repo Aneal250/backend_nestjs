@@ -34,8 +34,14 @@ export class MediaService {
     return result;
   }
 
-  async fetchMediaByTitle(title: string){
-
+  async fetchMediaByTitle(query: string) {
+    const result = await this.mediaRepository
+      .createQueryBuilder('media')
+      .where('media.name LIKE :query ', {
+        query: `%${query}%`,
+      })
+      .getMany();
+    return result;
   }
 
   createMedia(mediaDetails: CreateMedia) {
@@ -49,7 +55,10 @@ export class MediaService {
   }
 
   updateMedia(id: string, updateMedia: UpdateMedia) {
-    return this.mediaRepository.update({ id }, { ...updateMedia });
+    return this.mediaRepository.update(
+      { id },
+      { ...updateMedia, updatedAt: new Date() },
+    );
   }
 
   deleteMedia(id: string) {

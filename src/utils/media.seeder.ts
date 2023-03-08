@@ -14,8 +14,8 @@ export class MediaSeeder implements Seeder {
   }
 
   seed(): Promise<any> {
-    const products = DataFactory.createForClass(Media).generate(20);
+    const MediaList = DataFactory.createForClass(Media).generate(20);
 
-    return this.mediaRepository.insert(products);
+    return this.mediaRepository.insert(MediaList);
   }
 }
